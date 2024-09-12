@@ -18,6 +18,16 @@ return {
       -- javascriptreact = { "eslint_d" },
       -- typescriptreact = { "eslint_d" },
       -- svelte = { "eslint_d" },
+      -- clojure = { "clj-kondo" },
+      -- dockerfile = { "hadolint" },
+      -- inko = { "inko" },
+      -- janet = { "janet" },
+      -- json = { "jsonlint" },
+      markdown = { 'vale' },
+      -- rst = { "vale" },
+      -- ruby = { "ruby" },
+      -- terraform = { "tflint" },
+      text = { 'vale' },
       python = {
         -- Uncomment whichever linters you prefer
         -- 'flake8',

@@ -1,11 +1,11 @@
-  -- NOTE: Plugins can specify dependencies.
-  --
-  -- The dependencies are proper plugin specifications as well - anything
-  -- you do for a plugin at the top level, you can do for a dependency.
-  --
-  -- Use the `dependencies` key to specify the dependencies of a particular plugin
+-- NOTE: Plugins can specify dependencies.
+--
+-- The dependencies are proper plugin specifications as well - anything
+-- you do for a plugin at the top level, you can do for a dependency.
+--
+-- Use the `dependencies` key to specify the dependencies of a particular plugin
 
-  -- Fuzzy Finder (files, lsp, etc)
+-- Fuzzy Finder (files, lsp, etc)
 return {
   -- https://github.com/nvim-telescope/telescope.nvim
   'nvim-telescope/telescope.nvim',
@@ -28,22 +28,22 @@ return {
         return vim.fn.executable 'make' == 1
       end,
     },
-     { 'nvim-telescope/telescope-ui-select.nvim' },
+    { 'nvim-telescope/telescope-ui-select.nvim' },
 
-      -- Useful for getting pretty icons, but requires a Nerd Font.
-      { 'nvim-tree/nvim-web-devicons', enabled = vim.g.have_nerd_font },
+    -- Useful for getting pretty icons, but requires a Nerd Font.
+    { 'nvim-tree/nvim-web-devicons', enabled = vim.g.have_nerd_font },
   },
   opts = {
     defaults = {
       layout_config = {
         vertical = {
-          width = 0.75
-        }
+          width = 0.75,
+        },
       },
       path_display = {
         filename_first = {
-          reverse_directories = true
-        }
+          reverse_directories = true,
+        },
       },
     },
   },

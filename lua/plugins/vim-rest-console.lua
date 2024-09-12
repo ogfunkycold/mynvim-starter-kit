@@ -3,7 +3,7 @@ return {
   -- https://github.com/diepm/vim-rest-console
   'diepm/vim-rest-console',
   event = 'VeryLazy',
-  config = function ()
+  config = function()
     -- Turn off the default key binding
     vim.g.vrc_set_default_mapping = 0
     -- Set the default response content type to JSON
@@ -14,6 +14,5 @@ return {
     vim.g.vrc_auto_format_response_patterns = {
       json = 'jq',
     }
-  end
+  end,
 }
-

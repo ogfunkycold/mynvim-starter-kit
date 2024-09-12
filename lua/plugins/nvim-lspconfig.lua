@@ -8,6 +8,7 @@ return {
     -- LSP Management
     -- https://github.com/williamboman/mason.nvim
     { 'williamboman/mason.nvim' },
+
     -- https://github.com/williamboman/mason-lspconfig.nvim
     { 'williamboman/mason-lspconfig.nvim' },
 
@@ -23,9 +24,9 @@ return {
     -- https://github.com/folke/neodev.nvim
     { 'folke/neodev.nvim', opts = {} },
   },
-  config = function ()
+  config = function()
     require('mason').setup()
-    require('mason-lspconfig').setup({
+    require('mason-lspconfig').setup {
       -- Install these LSPs automatically
       ensure_installed = {
         'bashls',
@@ -38,40 +39,44 @@ return {
         'quick_lint_js',
         'yamlls',
         'pyright',
-      }
-    })
+      },
+    }
 
-    require('mason-tool-installer').setup({
+    require('mason-tool-installer').setup {
       -- Install these linters, formatters, debuggers automatically
       ensure_installed = {
-        'black',
+        'prettier', -- prettier formatter
+        'stylua', -- lua formatter
+        'isort', -- python formatter
+        'black', -- python formatter
+        'pylint', -- python linter
+        'eslint_d',
         'debugpy',
         'flake8',
-        'isort',
         'mypy',
         'pylint',
       },
-    })
+    }
 
     -- There is an issue with mason-tools-installer running with VeryLazy, since it triggers on VimEnter which has already occurred prior to this plugin loading so we need to call install explicitly
     -- https://github.com/WhoIsSethDaniel/mason-tool-installer.nvim/issues/39
-    vim.api.nvim_command('MasonToolsInstall')
+    vim.api.nvim_command 'MasonToolsInstall'
 
-    local lspconfig = require('lspconfig')
+    local lspconfig = require 'lspconfig'
     local lsp_capabilities = require('cmp_nvim_lsp').default_capabilities()
     local lsp_attach = function(client, bufnr)
       -- Create your keybindings here...
     end
 
     -- Call setup on each LSP server
-    require('mason-lspconfig').setup_handlers({
+    require('mason-lspconfig').setup_handlers {
       function(server_name)
-        lspconfig[server_name].setup({
+        lspconfig[server_name].setup {
           on_attach = lsp_attach,
           capabilities = lsp_capabilities,
-        })
-      end
-    })
+        }
+      end,
+    }
 
     -- Lua LSP settings
     lspconfig.lua_ls.setup {
@@ -79,7 +84,7 @@ return {
         Lua = {
           diagnostics = {
             -- Get the language server to recognize the `vim` global
-            globals = {'vim'},
+            globals = { 'vim' },
           },
         },
       },
@@ -89,10 +94,8 @@ return {
     local open_floating_preview = vim.lsp.util.open_floating_preview
     function vim.lsp.util.open_floating_preview(contents, syntax, opts, ...)
       opts = opts or {}
-      opts.border = opts.border or "rounded" -- Set border to rounded
+      opts.border = opts.border or 'rounded' -- Set border to rounded
       return open_floating_preview(contents, syntax, opts, ...)
     end
-
-  end
+  end,
 }
-

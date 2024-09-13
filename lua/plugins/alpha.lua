@@ -48,6 +48,7 @@ return {
 
     -- Set header
     dashboard.section.header.val = vim.split(logo, '\n')
+
     -- dashboard.section.header.val = vim.split(logo2, '\n')
     -- dashboard.section.header.val = {
     --   "                                                     ",

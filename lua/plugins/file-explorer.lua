@@ -10,16 +10,15 @@ return {
     actions = {
       open_file = {
         window_picker = {
-          enable = false
+          enable = false,
         },
-      }
+      },
     },
   },
-  config = function (_, opts)
+  config = function(_, opts)
     -- Recommended settings to disable default netrw file explorer
     vim.g.loaded_netrw = 1
     vim.g.loaded_netrwPlugin = 1
-    require("nvim-tree").setup(opts)
-  end
+    require('nvim-tree').setup(opts)
+  end,
 }
-

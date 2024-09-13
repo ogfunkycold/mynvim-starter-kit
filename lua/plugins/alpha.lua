@@ -149,7 +149,8 @@ return {
     -- Set men
     dashboard.section.buttons.val = {
       dashboard.button('e', '  > New File', '<cmd>ene<CR>'),
-      dashboard.button('t', ' > Toggle file explorer', '<cmd>NvimTreeToggle<CR>'),
+      -- dashboard.button('t', ' > Toggle file explorer', '<cmd>NvimTreeToggle<CR>'),
+      dashboard.button('t', ' > Toggle file explorer', '<cmd>Neotree toggle<CR>'),
       dashboard.button('f', '󰱼 > Find File', '<cmd>Telescope find_files<CR>'),
       dashboard.button('r', '󰱼 > Recent files', '<cmd>Telescope oldfiles<CR>'),
       dashboard.button('g', ' > Find text', ':Telescope live_grep <CR>'),

@@ -18,6 +18,11 @@ map('n', '<leader>wq', ':wq<CR>') -- save and quit
 map('n', '<leader>qq', ':q!<CR>') -- quit without saving
 map('n', '<leader>ww', ':w<CR>') -- save
 map('n', 'gx', ':!open <c-r><c-a><CR>') -- open URL under cursor
+--
+-- buffers
+map('n', '<leader>n', ':bn<cr>')
+map('n', '<leader>p', ':bp<cr>')
+map('n', '<leader>x', ':bd<cr>')
 
 -- Window Navigation
 map('n', '<C-h>', '<C-w>h')
@@ -46,6 +51,16 @@ map('n', '<leader>to', ':tabnew<CR>') -- open a new tab
 map('n', '<leader>tx', ':tabclose<CR>') -- close a tab
 map('n', '<leader>tn', ':tabn<CR>') -- next tab
 map('n', '<leader>tp', ':tabp<CR>') -- previous tab
+--
+-- yank to clipboard
+map({ 'n', 'v' }, '<leader>y', [["+y]])
+
+-- black python formatting
+map('n', '<leader>fmp', ':silent !black %<cr>')
+
+-- Vertical scroll and center
+map('n', '<C-d>', '<C-d>zz')
+map('n', '<C-u>', '<C-u>zz')
 
 -- Diff keymaps
 map('n', '<leader>cc', ':diffput<CR>') -- put diff from current to other during diff
@@ -65,22 +80,28 @@ map('n', '<leader>qc', ':cclose<CR>') -- close quickfix list
 -- Vim-maximizer
 map('n', '<leader>sm', ':MaximizerToggle<CR>') -- toggle maximize tab
 
+--- NOTE: nveim-tree keymaps
 -- Nvim-tree
-map('n', '<leader>ee', ':NvimTreeToggle<CR>') -- toggle file explorer
-map('n', '<leader>er', ':NvimTreeFocus<CR>') -- toggle focus to file explorer
-map('n', '<leader>ef', ':NvimTreeFindFile<CR>') -- find file in file explorer
+-- map('n', '<leader>ee', ':NvimTreeToggle<CR>') -- toggle V file explorer
+-- map('n', '<leader>er', ':NvimTreeFocus<CR>') -- toggle focus to file explorer
+-- map('n', '<leader>ef', ':NvimTreeFindFile<CR>') -- find file in file explorer
+--- NOTE: you cau neotree instead of nvim-tree
+--- Nvim-tree
+map('n', '<leader>ee', ':Neotree toggle<CR>') -- toggle file explorer
+map('n', '<leader>er', ':Neotree focus<CR>') -- toggle focus to file explorer
+-- map('n', '<leader>ef', ':NvimTreeFindFile<CR>') -- find file in file explorer
 --
--- Telescope
-keymap.set('n', '<leader>ff', require('telescope.builtin').find_files, {})
-keymap.set('n', '<leader>fg', require('telescope.builtin').live_grep, {})
-keymap.set('n', '<leader>fb', require('telescope.builtin').buffers, {})
-keymap.set('n', '<leader>fh', require('telescope.builtin').help_tags, {})
-keymap.set('n', '<leader>fs', require('telescope.builtin').current_buffer_fuzzy_find, {})
-keymap.set('n', '<leader>fo', require('telescope.builtin').lsp_document_symbols, {})
-keymap.set('n', '<leader>fi', require('telescope.builtin').lsp_incoming_calls, {})
-keymap.set('n', '<leader>fm', function()
-  require('telescope.builtin').treesitter { default_text = ':method:' }
-end)
+-- Telescope:
+-- keymap.set('n', '<leader>ff', require('telescope.builtin').find_files, {})
+-- keymap.set('n', '<leader>fg', require('telescope.builtin').live_grep, {})
+-- keymap.set('n', '<leader>fb', require('telescope.builtin').buffers, {})
+-- keymap.set('n', '<leader>fh', require('telescope.builtin').help_tags, {})
+-- keymap.set('n', '<leader>fs', require('telescope.builtin').current_buffer_fuzzy_find, {})
+-- keymap.set('n', '<leader>fo', require('telescope.builtin').lsp_document_symbols, {})
+-- keymap.set('n', '<leader>fi', require('telescope.builtin').lsp_incoming_calls, {})
+-- keymap.set('n', '<leader>fm', function()
+-- require('telescope.builtin').treesitter { default_text = ':method:' }
+-- end)
 
 -- Git-blame
 map('n', '<leader>gb', ':GitBlameToggle<CR>') -- toggle git blame

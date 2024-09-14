@@ -106,6 +106,7 @@ require('lazy').setup {
   require 'plugins.vim-rest-console',
   require 'plugins.vim-tmux-navigator',
   require 'plugins.markdown-preview',
+  require 'plugins.diffview',
 
   change_detection = {
     enabled = true, -- automatically check for config file changes and reload the ui

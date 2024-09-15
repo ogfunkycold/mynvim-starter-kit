@@ -15,8 +15,12 @@ local keymap = vim.keymap
 
 -- Clear highlights on search when pressing <Esc> in normal mode
 --  See `:help hlsearch`
-vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
-
+-- Clear highlights on search when pressing <CR> in normal modes
+keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
+keymap.set('n', '<leader>nh', ':nohl<CR>', { desc = 'Clear search highlights' })
+-- save file with ctrl-s
+vim.api.nvim_set_keymap('n', '<C-s>', ':w<CR>', { noremap = true })
+vim.api.nvim_set_keymap('i', '<C-s>', '<C-o>:write<CR>a', { noremap = true })
 -- Diagnostic keymaps
 vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostic [Q]uickfix list' })
 

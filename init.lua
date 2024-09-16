@@ -1,3 +1,5 @@
+-- NOTE: This file is the entry point for the Neovim configuration.
+--
 -- Bootstrap lazy
 local lazypath = vim.fn.stdpath 'data' .. '/lazy/lazy.nvim'
 if not vim.loop.fs_stat(lazypath) then

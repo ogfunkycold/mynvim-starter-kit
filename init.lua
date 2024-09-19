@@ -1,4 +1,4 @@
--- NOTE: This file is the entry point for the Neovim configuration.
+--  NOTE: This file is the entry point for the Neovim configuration.
 --
 -- Bootstrap lazy
 local lazypath = vim.fn.stdpath 'data' .. '/lazy/lazy.nvim'
@@ -104,12 +104,17 @@ require('lazy').setup {
   require 'plugins.nvim-dap-virtual-text',
   require 'plugins.nvim-lint',
   require 'plugins.copilot',
+  require 'plugins.gpt-prompts',
   require 'plugins.obsidian',
   require 'plugins.vim-rest-console',
   require 'plugins.vim-tmux-navigator',
+  require 'plugins.markdown-nvim',
+  require 'plugins.markdown-render',
   require 'plugins.markdown-preview',
+  require 'plugins.peek',
+  -- require 'plugins.toggleterm',
+  require 'plugins.zenmode',
   require 'plugins.diffview',
-
   change_detection = {
     enabled = true, -- automatically check for config file changes and reload the ui
     notify = false, -- turn off notifications whenever plugin changes are made
@@ -141,6 +146,17 @@ require 'core.options'
 
 -- NOTE: load general keymap
 require 'core.keymaps'
+
+-- [[ Highlight on yank ]]
+-- See `:help vim.highlight.on_yank()`
+local highlight_group = vim.api.nvim_create_augroup('YankHighlight', { clear = true })
+vim.api.nvim_create_autocmd('TextYankPost', {
+  callback = function()
+    vim.highlight.on_yank()
+  end,
+  group = highlight_group,
+  pattern = '*',
+})
 
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et

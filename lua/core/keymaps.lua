@@ -18,12 +18,11 @@ local keymap = vim.keymap
 -- Clear highlights on search when pressing <CR> in normal modes
 keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
 keymap.set('n', '<leader>nh', ':nohl<CR>', { desc = 'Clear search highlights' })
--- save file with ctrl-s
+-- NOTE: save file with ctrl-s
 vim.api.nvim_set_keymap('n', '<C-s>', ':w<CR>', { noremap = true })
 vim.api.nvim_set_keymap('i', '<C-s>', '<C-o>:write<CR>a', { noremap = true })
--- Diagnostic keymaps
+-- NOTE: Diagnostic keymaps
 vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostic [Q]uickfix list' })
-
 -- Exit terminal mode in the builtin terminal with a shortcut that is a bit easier
 -- for people to discover. Otherwise, you normally need to press <C-\><C-n>, which
 -- is not what someone will guess without a bit more experience.
@@ -41,7 +40,7 @@ vim.keymap.set('t', '<Esc><Esc>', '<C-\\><C-n>', { desc = 'Exit terminal mode' }
 -- vim.keymap.set('n', '<up>', '<cmd>echo "Use k to move!!"<CR>')
 -- vim.keymap.set('n', '<down>', '<cmd>echo "Use j to move!!"<CR>')
 
--- Keybinds to make split navigation easier.
+-- NOTE: Keybinds to make split navigation easier.
 --  Use CTRL+<hjkl> to switch between windows
 --
 --  See `:help wincmd` for a list of all window commands
@@ -69,10 +68,11 @@ vim.api.nvim_create_autocmd('TextYankPost', {
   end,
 })
 
--- Disable the spacebar key's default behavior in Normal and Visual modes
+-- NOTE: Disable the spacebar key's default behavior in Normal and Visual modes
 keymap.set({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
 
--- Exit insert mode
+-- NOTE: Exit insert mode
+vim.api.nvim_set_keymap('i', 'jj', '<Esc>', { noremap = false })
 map('i', 'jk', '<ESC>')
 
 -- General keymaps
@@ -80,7 +80,15 @@ map('n', '<leader>wq', ':wq<CR>') -- save and quit
 map('n', '<leader>qq', ':q!<CR>') -- quit without saving
 map('n', '<leader>ww', ':w<CR>') -- save
 map('n', 'gx', ':!open <c-r><c-a><CR>') -- open URL under cursor
---
+
+-- files
+vim.api.nvim_set_keymap('n', 'QQ', ':q!<enter>', { noremap = false })
+vim.api.nvim_set_keymap('n', 'WW', ':w!<enter>', { noremap = false })
+vim.api.nvim_set_keymap('n', 'E', '$', { noremap = false })
+vim.api.nvim_set_keymap('n', 'B', '^', { noremap = false })
+vim.api.nvim_set_keymap('n', 'TT', ':TransparentToggle<CR>', { noremap = true })
+vim.api.nvim_set_keymap('n', 'ss', ':noh<CR>', { noremap = true })
+
 -- Buffers
 map('n', '<Tab>', ':bnext<CR>')
 map('n', '<leader>n', ':bn<cr>')
@@ -90,6 +98,19 @@ map('n', '<leader>x', ':Bdelete!<CR>') -- close buffer
 map('n', '<leader>x', ':bd<cr>')
 map('n', '<leader>b', '<cmd> enew <CR>') -- new buffer
 
+-- buffers
+vim.api.nvim_set_keymap('n', 'tk', ':blast<enter>', { noremap = false })
+vim.api.nvim_set_keymap('n', 'tj', ':bfirst<enter>', { noremap = false })
+vim.api.nvim_set_keymap('n', 'th', ':bprev<enter>', { noremap = false })
+vim.api.nvim_set_keymap('n', 'tl', ':bnext<enter>', { noremap = false })
+vim.api.nvim_set_keymap('n', 'td', ':bdelete<enter>', { noremap = false })
+
+-- Tab management
+map('n', '<leader>to', ':tabnew<CR>') -- open a new tab
+map('n', '<leader>tx', ':tabclose<CR>') -- close a tab
+map('n', '<leader>tn', ':tabn<CR>') -- next tab
+map('n', '<leader>tp', ':tabp<CR>') -- previous tab
+--
 -- Resize Windows
 map('n', '<C-Left>', '<C-w><')
 map('n', '<C-Right>', '<C-w>>')
@@ -106,12 +127,6 @@ map('n', '<leader>sk', '<C-w>+') -- make split windows height taller
 map('n', '<leader>sl', '<C-w>>5') -- make split windows width bigger
 map('n', '<leader>sh', '<C-w><5') -- make split windows width smaller
 
--- Tab management
-map('n', '<leader>to', ':tabnew<CR>') -- open a new tab
-map('n', '<leader>tx', ':tabclose<CR>') -- close a tab
-map('n', '<leader>tn', ':tabn<CR>') -- next tab
-map('n', '<leader>tp', ':tabp<CR>') -- previous tab
---
 -- yank to clipboard
 map({ 'n', 'v' }, '<leader>y', [["+y]])
 

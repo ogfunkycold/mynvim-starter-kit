@@ -111,7 +111,6 @@ opt.foldexpr = 'nvim_treesitter#foldexpr()' -- Utilize Treesitter folds
 opt.showtabline = 2 -- Always show tabs (default: 1)
 
 -- NOTE: from hvim
--- opt.hlsearch = false -- Set highlight on search (default: true)
 opt.whichwrap = 'bs<>[]hl' -- Which "horizontal" keys are allowed to travel to prev/next line (default: 'b,s')
 opt.numberwidth = 4 -- Set number column width to 2 {default 4} (default: 4)
 opt.swapfile = false -- Creates a swapfile (default: true)

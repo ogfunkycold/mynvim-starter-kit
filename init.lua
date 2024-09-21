@@ -113,7 +113,7 @@ require('lazy').setup {
   require 'plugins.markdown-preview',
   require 'plugins.peek',
   require 'plugins.incline',
-  -- require 'plugins.toggleterm',
+  require 'plugins.toggleterm',
   require 'plugins.zenmode',
   require 'plugins.diffview',
   change_detection = {

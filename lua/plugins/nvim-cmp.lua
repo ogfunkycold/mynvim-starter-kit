@@ -30,9 +30,36 @@ return {
     require('luasnip.loaders.from_vscode').lazy_load()
     luasnip.config.setup {}
 
+    local kind_icons = {
+      Text = '󰉿',
+      Method = 'm',
+      Function = '󰊕',
+      Constructor = '',
+      Field = '',
+      Variable = '󰆧',
+      Class = '󰌗',
+      Interface = '',
+      Module = '',
+      Property = '',
+      Unit = '',
+      Value = '󰎠',
+      Enum = '',
+      Keyword = '󰌋',
+      Snippet = '',
+      Color = '󰏘',
+      File = '󰈙',
+      Reference = '',
+      Folder = '󰉋',
+      EnumMember = '',
+      Constant = '󰇽',
+      Struct = '',
+      Event = '',
+      Operator = '󰆕',
+      TypeParameter = '󰊄',
+    }
     cmp.setup {
       snippet = {
-        { name = 'emoji' },
+        -- { name = 'emoji' },
         expand = function(args)
           luasnip.lsp_expand(args.body)
         end,
@@ -76,6 +103,20 @@ return {
         { name = 'luasnip' }, -- snippets
         { name = 'buffer' }, -- text within current buffer
         { name = 'path' }, -- file system paths
+      },
+      formatting = {
+        expandable_indicator = true,
+        fields = { 'kind', 'abbr', 'menu' },
+        format = function(entry, vim_item)
+          vim_item.kind = string.format('%s', kind_icons[vim_item.kind])
+          vim_item.menu = ({
+            nvim_lsp = '[LSP]',
+            luasnip = '[Snippet]',
+            buffer = '[Buffer]',
+            path = '[Path]',
+          })[entry.source.name]
+          return vim_item
+        end,
       },
       window = {
         -- Add borders to completions popups

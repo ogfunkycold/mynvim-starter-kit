@@ -25,13 +25,14 @@ return {
     'hrsh7th/cmp-cmdline',
   },
   config = function()
-    local cmp = require('cmp')
-    local luasnip = require('luasnip')
+    local cmp = require 'cmp'
+    local luasnip = require 'luasnip'
     require('luasnip.loaders.from_vscode').lazy_load()
-    luasnip.config.setup({})
+    luasnip.config.setup {}
 
-    cmp.setup({
+    cmp.setup {
       snippet = {
+        { name = 'emoji' },
         expand = function(args)
           luasnip.lsp_expand(args.body)
         end,
@@ -49,7 +50,7 @@ return {
           behavior = cmp.ConfirmBehavior.Replace,
           select = true,
         },
-	-- Tab through suggestions or when a snippet is active, tab to the next argument
+        -- Tab through suggestions or when a snippet is active, tab to the next argument
         ['<Tab>'] = cmp.mapping(function(fallback)
           if cmp.visible() then
             cmp.select_next_item()
@@ -59,7 +60,7 @@ return {
             fallback()
           end
         end, { 'i', 's' }),
-	-- Tab backwards through suggestions or when a snippet is active, tab to the next argument
+        -- Tab backwards through suggestions or when a snippet is active, tab to the next argument
         ['<S-Tab>'] = cmp.mapping(function(fallback)
           if cmp.visible() then
             cmp.select_prev_item()
@@ -70,18 +71,17 @@ return {
           end
         end, { 'i', 's' }),
       },
-      sources = cmp.config.sources({
-        { name = "nvim_lsp" }, -- lsp 
-        { name = "luasnip" }, -- snippets
-        { name = "buffer" }, -- text within current buffer
-        { name = "path" }, -- file system paths
-      }),
+      sources = cmp.config.sources {
+        { name = 'nvim_lsp' }, -- lsp
+        { name = 'luasnip' }, -- snippets
+        { name = 'buffer' }, -- text within current buffer
+        { name = 'path' }, -- file system paths
+      },
       window = {
         -- Add borders to completions popups
         completion = cmp.config.window.bordered(),
         documentation = cmp.config.window.bordered(),
       },
-    })
+    }
   end,
- }
-
+}

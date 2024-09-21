@@ -19,20 +19,6 @@ local keymap = vim.keymap
 keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
 keymap.set('n', '<leader>nh', ':nohl<CR>', { desc = 'Clear search highlights' })
 
--- NOTE: save file with ctrl-s
-vim.api.nvim_set_keymap('n', '<C-s>', ':w<CR>', { noremap = true })
-vim.api.nvim_set_keymap('i', '<C-s>', '<C-o>:write<CR>a', { noremap = true })
-
--- NOTE: Diagnostic keymaps
-vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostic [Q]uickfix list' })
-
--- NOTE: ToggleTerm
--- Exit terminal mode in the builtin terminal with a shortcut that is a bit easier
--- for people to discover. Otherwise, you normally need to press <C-\><C-n>, which
--- is not what someone will guess without a bit more experience.
-vim.api.nvim_set_keymap('n', '<leader>tt', ':ToggleTerm<CR>', { noremap = true, silent = true })
-vim.api.nvim_set_keymap('t', '<leader>tt', ':ToggleTerm<CR>', { noremap = true, silent = true })
-
 -- NOTE: This won't work in all terminal emulators/tmux/etc. Try your own mapping
 -- or just use <C-\><C-n> to exit terminal mode
 vim.keymap.set('t', '<Esc><Esc>', '<C-\\><C-n>', { desc = 'Exit terminal mode' })
@@ -75,22 +61,49 @@ vim.api.nvim_create_autocmd('TextYankPost', {
 keymap.set({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
 
 -- NOTE: Exit insert mode
-vim.api.nvim_set_keymap('i', 'jj', '<Esc>', { noremap = false })
+map('i', 'jj', '<Esc>')
 map('i', 'jk', '<ESC>')
 
 -- NOTE: General keymaps
 map('n', '<leader>wq', ':wq<CR>') -- save and quit
-map('n', '<leader>qq', ':q!<CR>') -- quit without saving
 map('n', '<leader>ww', ':w<CR>') -- save
-map('n', 'gx', ':!open <c-r><c-a><CR>') -- open URL under cursor
+map('n', 'QQ', ':q!<enter>')
 
--- NOTE: files
-vim.api.nvim_set_keymap('n', 'QQ', ':q!<enter>', { noremap = false })
-vim.api.nvim_set_keymap('n', 'WW', ':w!<enter>', { noremap = false })
-vim.api.nvim_set_keymap('n', 'E', '$', { noremap = false })
-vim.api.nvim_set_keymap('n', 'B', '^', { noremap = false })
-vim.api.nvim_set_keymap('n', 'TT', ':TransparentToggle<CR>', { noremap = true })
-vim.api.nvim_set_keymap('n', 'ss', ':noh<CR>', { noremap = true })
+-- NOTE: save file with ctrl-s
+map('n', '<C-s>', ':w<CR>')
+map('i', '<C-s>', '<C-o>:write<CR>a')
+map('n', '<leader>qq', ':q!<CR>') -- quit without saving
+map('n', 'ss', ':noh<CR>')
+map('n', 'WW', ':w!<enter>')
+map('n', 'E', '$')
+map('n', 'B', '^')
+map('n', 'TT', ':TransparentToggle<CR>')
+
+-- map('n', 'gx', ':!open <c-r><c-a><CR>') -- open URL under cursor
+
+-- NOTE: Vertical scroll and center
+vim.keymap.set('n', '<C-d>', '<C-d>zz', opts)
+vim.keymap.set('n', '<C-u>', '<C-u>zz', opts)
+
+-- NOTE: Find and center
+vim.keymap.set('n', 'n', 'nzzzv', opts)
+vim.keymap.set('n', 'N', 'Nzzzv', opts)
+--
+-- NOTE: Toggle line wrapping
+vim.keymap.set('n', '<leader>lw', '<cmd>set wrap!<CR>', opts)
+
+-- NOTE: Stay in indent mode
+vim.keymap.set('v', '<', '<gv', opts)
+vim.keymap.set('v', '>', '>gv', opts)
+
+-- Keep last yanked when pasting
+vim.keymap.set('v', 'p', '"_dP', opts)
+
+-- NOTE: Resize Windows
+map('n', '<C-Left>', '<C-w><')
+map('n', '<C-Right>', '<C-w>>')
+map('n', '<C-Up>', '<C-w>+')
+map('n', '<C-Down>', '<C-w>-')
 
 -- NOTE: Buffers
 map('n', '<Tab>', ':bnext<CR>')
@@ -100,25 +113,18 @@ map('n', '<leader>p', ':bp<cr>')
 map('n', '<leader>x', ':Bdelete!<CR>') -- close buffer
 map('n', '<leader>x', ':bd<cr>')
 map('n', '<leader>b', '<cmd> enew <CR>') -- new buffer
-
--- NOTE: buffers
-vim.api.nvim_set_keymap('n', 'tk', ':blast<enter>', { noremap = false })
-vim.api.nvim_set_keymap('n', 'tj', ':bfirst<enter>', { noremap = false })
-vim.api.nvim_set_keymap('n', 'th', ':bprev<enter>', { noremap = false })
-vim.api.nvim_set_keymap('n', 'tl', ':bnext<enter>', { noremap = false })
-vim.api.nvim_set_keymap('n', 'td', ':bdelete<enter>', { noremap = false })
+-- TODO: other buffers keymaps, I prefer this set the previous onee.
+map('n', 'tk', ':blast<enter>')
+map('n', 'tj', ':bfirst<enter>')
+map('n', 'th', ':bprev<enter>')
+map('n', 'tl', ':bnext<enter>')
+map('n', 'td', ':bdelete<enter>')
 
 -- NOTE: Tab management
 map('n', '<leader>to', ':tabnew<CR>') -- open a new tab
 map('n', '<leader>tx', ':tabclose<CR>') -- close a tab
 map('n', '<leader>tn', ':tabn<CR>') -- next tab
 map('n', '<leader>tp', ':tabp<CR>') -- previous tab
---
--- NOTE: Resize Windows
-map('n', '<C-Left>', '<C-w><')
-map('n', '<C-Right>', '<C-w>>')
-map('n', '<C-Up>', '<C-w>+')
-map('n', '<C-Down>', '<C-w>-')
 
 -- NOTE: Split window management
 keymap.set('n', 'sv', ':vsplit<Return>', opts)
@@ -129,21 +135,25 @@ map('n', '<leader>se', '<C-w>=') -- make split windows equal width
 map('n', '<leader>sx', ':close<CR>') -- close split window
 map('n', '<leader>sj', '<C-w>-') -- make split window height shorter
 map('n', '<leader>sk', '<C-w>+') -- make split windows height taller
--- map('n', '<leader>sl', '<C-w>>5') -- make split windows width bigger
--- map('n', '<leader>sh', '<C-w><5') -- make split windows width smaller
 
 -- NOTE: yank to clipboard
 map({ 'n', 'v' }, '<leader>y', [["+y]])
 
 -- NOTE: Keep last yanked when pasting
-vim.keymap.set('v', 'p', '"_dP', opts)
+keymap.set('v', 'p', '"_dP', opts)
 
 -- NOTE: black python formatting
 map('n', '<leader>fmp', ':silent !black %<cr>')
 
--- NOTE: Vertical scroll and center
-map('n', '<C-d>', '<C-d>zz')
-map('n', '<C-u>', '<C-u>zz')
+-- NOTE: Diagnostic keymaps
+keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostic [Q]uickfix list' })
+
+-- NOTE: ToggleTerm
+-- Exit terminal mode in the builtin terminal with a shortcut that is a bit easier
+-- for people to discover. Otherwise, you normally need to press <C-\><C-n>, which
+-- is not what someone will guess without a bit more experience.
+map('n', '<leader>tt', ':ToggleTerm<CR>')
+map('t', '<leader>tt', ':ToggleTerm<CR>')
 
 -- NOTE: Diff keymaps
 map('n', '<leader>cc', ':diffput<CR>') -- put diff from current to other during diff

@@ -1,6 +1,7 @@
 -- NOTE:
 --
 return {
+  -- https://github.com/goolord/alpha-nvim
   'goolord/alpha-nvim',
   event = 'VimEnter',
   dependencies = {

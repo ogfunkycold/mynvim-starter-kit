@@ -35,10 +35,10 @@ vim.schedule(function()
 end)
 
 -- Enable break indent
-vim.opt.breakindent = true -- Enable break indent (default: false)
+opt.breakindent = true -- Enable break indent (default: false)
 
 -- Save undo history
-vim.opt.undofile = true -- Save undo history (default: false)
+opt.undofile = true -- Save undo history (default: false)
 
 -- Search Settings
 -- NOTE:gn Case-insensitive searching UNLESS \C or one or more capital letters in the search term
@@ -88,9 +88,9 @@ opt.sidescrolloff = 10 -- Minimal number of screen columns either side of cursor
 opt.sessionoptions = 'blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions'
 
 -- Tabs & Indentatio
-opt.tabstop = 2 -- Insert n spaces for a tab (default: 8)
-vim.bo.softtabstop = 2
-opt.shiftwidth = 2 -- The number of spaces inserted for each indentation (default: 8)
+opt.tabstop = 4 -- Insert n spaces for a tab (default: 8)
+vim.bo.softtabstop = 4
+opt.shiftwidth = 4 -- The number of spaces inserted for each indentation (default: 8)
 opt.expandtab = true -- Convert tabs to spaces (default: false)
 opt.autoindent = true -- Copy indent from current line when starting new one (default: true)
 
@@ -117,8 +117,8 @@ opt.swapfile = false -- Creates a swapfile (default: true)
 opt.smartindent = true -- Make indenting smarter again (default: false)
 opt.pumheight = 10 -- Pop up menu height (default: 0)
 opt.conceallevel = 2 -- So that `` is visible in markdown files (default: 1)
-opt.fileencoding = 'utf-8' -- The encoding written to a file (default: 'utf-8')
-opt.modifiable = true -- Allow file to be modified (default: false)
+-- opt.fileencoding = 'utf-8' -- The encoding written to a file (default: 'utf-8')
+-- opt.modifiable = true -- Allow file to be modified (default: false)
 -- opt.backup = false -- Creates a backup file (default: false)
 opt.writebackup = false -- If a file is being edited by another program (or was written to file while editing with another program), it is not allowed to be edited (default: true)
 opt.completeopt = 'menuone,noselect' -- Set completeopt to have a better completion experience (default: 'menu,preview')

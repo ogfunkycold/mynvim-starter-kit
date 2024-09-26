@@ -130,3 +130,6 @@ opt.runtimepath:remove '/usr/share/vim/vimfiles' -- Separate Vim plugins from Ne
 --
 vim.wo.signcolumn = 'yes' -- Keep signcolumn on by default (default: 'auto')
 --
+--
+-- The line beneath this is called `modeline`. See `:help modeline`
+-- vim: ts=2 sts=2 sw=2 et

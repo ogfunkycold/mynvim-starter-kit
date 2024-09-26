@@ -1,3 +1,5 @@
+-- NOTE:
+--
 -- Theme/Colorscheme (uncomment section for whichever theme you prefer or use your own)
 -- Kanagawa Theme (Custom Palette)
 -- return {
@@ -203,17 +205,170 @@
 --     vim.cmd("colorscheme onenord") -- Replace this with your favorite colorscheme
 --   end
 -- }
--- NOTE: solarized-osaka
+-- -- NOTE: clean dark theme written in lua for neovim (0.7.2 or older).
+-- -- NOTE: This is a fork of the original tokyodark.nvim by folke.
+-- --
+-- return {
+--   { -- You can easily change to a different colorscheme.
+--     -- Change the name of the colorscheme plugin below, and then
+--     -- change the command in the config to whatever the name of that colorscheme is.
+--     --
+--     'tiagovla/tokyodark.nvim',
+--     opts = {
+--       -- custom options here
+--       transparent_background = true, -- set background to transparent
+--       gamma = 1.00, -- adjust the brightness of the theme
+--     },
+--     config = function(_, opts)
+--       require('tokyodark').setup(opts) -- calling setup is optional
+--       vim.cmd [[colorscheme tokyodark]] -- Toggle background transparency
+--     end,
+--   },
+-- }
+-- NOTE: original tokyionight.lua that is configured in kickstart
+--
+-- return {
+--   { -- You can easily change to a different colorscheme.
+--     -- Change the name of the colorscheme plugin below, and then
+--     -- change the command in the config to whatever the name of that colorscheme is.
+--     --
+--     -- If you want to see what colorschemes are already installed, you can use `:Telescope colorscheme`.
+--     'folke/tokyonight.nvim',
+--     priority = 1000, -- Make sure to load this before all the other start plugins.
+--     init = function()
+--       -- Load the colorscheme here.
+--       -- Like many other themes, this one has different styles, and you could load
+--       -- any other, such as 'tokyonight-storm', 'tokyonight-moon', or 'tokyonight-day'.
+--       vim.cmd.colorscheme 'tokyonight-night'
+--
+--       -- You can configure highlights by doing something like:
+--       vim.cmd.hi 'Comment gui=none'
+--     end,
+--   },
+-- }
+-- The line beneath this is called `modeline`. See `:help modeline`
+-- vim: ts=2 sts=2 sw=2 et
+-- -- NOTE: solarized-osaka
+-- return {
+--   {
+--     'craftzdog/solarized-osaka.nvim',
+--     opts = {
+--       --     -- custom options here
+--       transparent = true,
+--     },
+--     config = function(_, opts)
+--       require('solarized-osaka').setup(opts) -- calling setup is optional
+--       vim.cmd [[colorscheme solarized-osaka]]
+--     end,
+--   },
+-- }
+-- -- NOTE: Neovim theme based off of the Nord Color Palette.
+-- return {
+--   'shaunsingh/nord.nvim',
+--   lazy = false,
+--   priority = 1000,
+--   config = function()
+--     -- Example config in lua
+--     vim.g.nord_contrast = true
+--     vim.g.nord_borders = false
+--     vim.g.nord_disable_background = true
+--     vim.g.nord_italic = false
+--     vim.g.nord_uniform_diff_background = true
+--     vim.g.nord_bold = false
+--
+--     -- Load the colorscheme
+--     require('nord').set()
+--
+--     -- Toggle background transparency
+--     local bg_transparent = true
+--
+--     local toggle_transparency = function()
+--       bg_transparent = not bg_transparent
+--       vim.g.nord_disable_background = bg_transparent
+--       vim.cmd [[colorscheme nord]]
+--     end
+--
+--     vim.keymap.set('n', '<leader>bg', toggle_transparency, { noremap = true, silent = true })
+--   end,
+-- }
+
 return {
-  {
-    'craftzdog/solarized-osaka.nvim',
-    opts = {
-      --     -- custom options here
-      transparent = false,
-    },
-    config = function(_, opts)
-      require('solarized-osaka').setup(opts) -- calling setup is optional
-      vim.cmd [[colorscheme solarized-osaka]]
-    end,
-  },
+  'catppuccin/nvim',
+  name = 'catppuccin',
+  priority = 1000,
+  ---@class CatppuccinOptions
+  opts = function()
+    vim.cmd.colorscheme 'catppuccin'
+    return {
+      flavour = 'mocha',
+      transparent_background = true,
+      color_overrides = {
+        mocha = {
+          base = '#000000',
+        },
+      },
+      custom_highlights = function(colors)
+        return {
+          CurSearch = { bg = colors.yellow },
+          Diffchanged = { fg = colors.yellow },
+          DiffChanged = { fg = colors.yellow },
+        }
+      end,
+      integrations = {
+        cmp = true,
+        fidget = true,
+        gitsigns = true,
+        harpoon = true,
+        lsp_trouble = true,
+        mason = true,
+        nvim_surround = false,
+        neotest = true,
+        nvimtree = true,
+        neotree = false,
+        markdown = true,
+        noice = true,
+        notify = true,
+        octo = true,
+        telescope = {
+          enabled = true,
+        },
+        render_markdown = true,
+        treesitter = true,
+        treesitter_context = false,
+        symbols_outline = true,
+        illuminate = true,
+        which_key = true,
+        barbecue = {
+          dim_dirname = true,
+          bold_basename = true,
+          dim_context = false,
+          alt_background = false,
+        },
+        native_lsp = {
+          enabled = true,
+          virtual_text = {
+            errors = { 'italic' },
+            hints = { 'italic' },
+            warnings = { 'italic' },
+            information = { 'italic' },
+          },
+          underlines = {
+            errors = { 'underline' },
+            hints = { 'underline' },
+            warnings = { 'underline' },
+            information = { 'underline' },
+          },
+        },
+      },
+      highlight_overrides = {
+        mocha = function(mocha)
+          return {
+            NvimTreeNormal = { bg = mocha.none },
+          }
+        end,
+      },
+    }
+  end,
 }
+-- The line beneath this is called `modeline`. See `:help modeline`
+-- vim: ts=2 sts=2 sw=2 et

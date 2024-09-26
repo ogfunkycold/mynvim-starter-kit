@@ -15,6 +15,7 @@ local keymap = vim.keymap
 
 -- Clear highlights on search when pressing <Esc> in normal mode
 --  See `:help hlsearch`
+
 -- Clear highlights on search when pressing <CR> in normal modes
 keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
 keymap.set('n', '<leader>nh', ':nohl<CR>', { desc = 'Clear search highlights' })
@@ -73,7 +74,7 @@ map('n', 'QQ', ':q!<enter>')
 map('n', '<C-s>', ':w<CR>')
 map('i', '<C-s>', '<C-o>:write<CR>a')
 map('n', '<leader>qq', ':q!<CR>') -- quit without saving
-map('n', 'ss', ':noh<CR>')
+-- map('n', 'ss', ':noh<CR>')
 map('n', 'WW', ':w!<enter>')
 map('n', 'E', '$')
 map('n', 'B', '^')
@@ -140,7 +141,7 @@ map('n', '<leader>sk', '<C-w>+') -- make split windows height taller
 map({ 'n', 'v' }, '<leader>y', [["+y]])
 
 -- NOTE: Keep last yanked when pasting
-keymap.set('v', 'p', '"_dP', opts)
+map('v', 'p', '"_dP')
 
 -- NOTE: black python formatting
 map('n', '<leader>fmp', ':silent !black %<cr>')
@@ -342,5 +343,16 @@ vim.keymap.set('n', '<leader>oz', ':Telescope live_grep search_dirs={"/home/og/o
 -- for review workflow
 -- move file in current buffer to zettelkasten folder
 vim.keymap.set('n', '<leader>ok', ":!mv '%:p' /home/og/ogwork/obisidian-on-popos/zettelkasten<cr>:bd<cr>")
+--
 -- delete file in current buffer
 vim.keymap.set('n', '<leader>odd', ":!rm '%:p'<cr>:bd<cr>")
+-- NOTE: change background color
+vim.keymap.set('n', '<leader>bg', function()
+  local cat = require 'catppuccin'
+  cat.options.transparent_background = not cat.options.transparent_background
+  cat.compile()
+  vim.cmd.colorscheme(vim.g.colors_name)
+end)
+--
+-- The line beneath this is called `modeline`. See `:help modeline`
+-- vim: ts=2 sts=2 sw=2 et

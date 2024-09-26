@@ -69,7 +69,7 @@ require('lazy').setup {
   --  Uncomment any of the lines below to enable them (you will need to restart nvim).
   --
   --
-  require 'plugins.file-explorer',
+  require 'plugins.neo-tree',
   require 'plugins.colorscheme',
   require 'plugins.bufferline',
   require 'plugins.lualine',

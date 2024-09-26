@@ -6,7 +6,10 @@ return {
   opts = {
     filesize = 2, -- size of the file in MiB, the plugin round file sizes to the closest MiB
   },
-  config = function (_, opts)
+  config = function(_, opts)
     require('bigfile').setup(opts)
-  end
+  end,
 }
+
+-- The line beneath this is called `modeline`. See `:help modeline`
+-- vim: ts=2 sts=2 sw=2 et

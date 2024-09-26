@@ -16,3 +16,5 @@ return {
     require('dap-python').setup '/home/og/anaconda3/bin/python3'
   end,
 }
+-- The line beneath this is called `modeline`. See `:help modeline`
+-- vim: ts=2 sts=2 sw=2 et

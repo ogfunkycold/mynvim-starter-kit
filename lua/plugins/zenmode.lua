@@ -26,6 +26,7 @@ return {
       -- list = false, -- disable whitespace characters
     },
   },
+  keys = { { '<leader>z', '<cmd>ZenMode<cr>', desc = 'Zen Mode' } },
   plugins = {
     -- disable some global vim options (vim.o...)
     -- comment the lines to not apply the options

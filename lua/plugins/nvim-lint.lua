@@ -14,7 +14,12 @@ return {
     -- Define a table of linters for each filetype (not extension).
     -- Additional linters can be found here: https://github.com/mfussenegger/nvim-lint#available-linters
     require('lint').linters_by_ft = {
-      -- javascript = { "eslint_d" },
+      javascript = { 'eslint_d' },
+      typescript = { 'eslint_d' },
+      javascriptreact = { 'eslint_d' },
+      typescriptreact = { 'eslint_d' },
+      svelte = { 'eslint_d' },
+      markdown = { 'markdownlint' },
       -- typescript = { "eslint_d" },
       -- javascriptreact = { "eslint_d" },
       -- typescriptreact = { "eslint_d" },
@@ -24,7 +29,7 @@ return {
       -- dockerfile = { "hadolint" },
       -- inko = { "inko" },
       -- janet = { "janet" },
-      -- json = { "jsonlint" },
+      json = { 'jsonlint' },
       -- markdown = { 'vale' },
       -- rst = { "vale" },
       -- ruby = { "ruby" },

@@ -78,6 +78,7 @@ require('lazy').setup {
   require 'plugins.nvim-lspconfig',
   require 'plugins.nvim-cmp',
   require 'plugins.mini',
+  require 'plugins.mini-animate',
   require 'plugins.alpha',
   require 'plugins.which-key',
   require 'plugins.harpoon',
@@ -104,6 +105,7 @@ require('lazy').setup {
   require 'plugins.nvim-dap-virtual-text',
   require 'plugins.nvim-lint',
   require 'plugins.copilot',
+  require 'plugins.avante',
   require 'plugins.gpt-prompts',
   require 'plugins.obsidian',
   require 'plugins.vim-rest-console',
@@ -115,6 +117,7 @@ require('lazy').setup {
   require 'plugins.incline',
   require 'plugins.toggleterm',
   require 'plugins.zenmode',
+  require 'plugins.chatgpt',
   require 'plugins.diffview',
   change_detection = {
     enabled = true, -- automatically check for config file changes and reload the ui

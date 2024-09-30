@@ -47,7 +47,7 @@ opt.smartcase = true -- Smart case (default: false)
 
 -- Appearance
 opt.termguicolors = true -- Set termguicolors to enable highlight groups (default: false)
-opt.background = 'dark'
+opt.background = 'dark' -- tell vim what the background color looks like
 
 -- Keep signcolumn on by default
 opt.signcolumn = 'yes'
@@ -130,6 +130,7 @@ opt.runtimepath:remove '/usr/share/vim/vimfiles' -- Separate Vim plugins from Ne
 --
 vim.wo.signcolumn = 'yes' -- Keep signcolumn on by default (default: 'auto')
 --
+opt.laststatus = 3 -- global statusline
 --
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et

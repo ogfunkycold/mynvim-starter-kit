@@ -351,8 +351,32 @@ vim.keymap.set('n', '<leader>bg', function()
   local cat = require 'catppuccin'
   cat.options.transparent_background = not cat.options.transparent_background
   cat.compile()
-  vim.cmd.colorscheme(vim.g.colors_name)
+  vim.cmd.colorscheme(vim.g.colors_name) 
 end)
 --
+-- NOTE: add keybindings for ChatGPT using which-key
+local wk = require 'which-key'
+
+-- Add keybindings for ChatGPT
+wk.add {
+  -- ChatGPT
+  {
+    mode = { 'n', 'v' },
+    { '<leader>c', group = 'GhatGTP' },
+    { '<leader>cc', '<cmd>ChatGPT<CR>', desc = 'ChatGPT' },
+    { '<leader>ca', '<cmd>ChatGPTRun add_tests<CR>', desc = 'Add Tests' },
+    { '<leader>cd', '<cmd>ChatGPTRun docstring<CR>', desc = 'Docstring' }
+    { '<leader>ce', '<cmd>ChatGPTEditWithInstruction<CR>', desc = 'Edit with instruction' },
+    { '<leader>cf', '<cmd>ChatGPTRun fix_bugs<CR>', desc = 'Fix Bugs' },
+    { '<leader>cg', '<cmd>ChatGPTRun grammar_correction<CR>', desc = 'Grammar Correction' },
+    { '<leader>ck', '<cmd>ChatGPTRun keywords<CR>', desc = 'Keywords' },
+    { '<leader>cl', '<cmd>ChatGPTRun code_readability_analysis<CR>', desc = 'Code Readability Analysis' },
+    { '<leader>co', '<cmd>ChatGPTRun optimize_code<CR>', desc = 'Optimize Code' },
+    { '<leader>cr', '<cmd>ChatGPTRun roxygen_edit<CR>', desc = 'Roxygen Edit' },
+    { '<leader>cs', '<cmd>ChatGPTRun summarize<CR>', desc = 'Summarize' },
+    { '<leader>ct', '<cmd>ChatGPTRun translate<CR>', desc = 'Translate' },
+    { '<leader>cx', '<cmd>ChatGPTRun explain_code<CR>', desc = 'Explain Code' },
+  },
+}
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et

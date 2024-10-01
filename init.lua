@@ -79,6 +79,7 @@ require('lazy').setup {
   require 'plugins.nvim-cmp',
   require 'plugins.mini',
   require 'plugins.mini-animate',
+  --
   require 'plugins.alpha',
   require 'plugins.which-key',
   require 'plugins.harpoon',
@@ -86,6 +87,12 @@ require('lazy').setup {
   require 'plugins.conform',
   require 'plugins.autopairs',
   require 'plugins.todo-comments',
+  --
+  -- require 'plugins.copilot',
+  -- require 'plugins.avante',
+  -- require 'plugins.chatgpt',
+  require 'plugins.ai',
+  --
   require 'plugins.vim-isort',
   require 'plugins.quickfixdd',
   require 'plugins.indent-blankline',
@@ -100,24 +107,23 @@ require('lazy').setup {
   require 'plugins.neogit',
   require 'plugins.git-blame',
   require 'plugins.git-signs',
+  --
   require 'plugins.nvim-dap-python',
   require 'plugins.nvim-dap-ui',
   require 'plugins.nvim-dap-virtual-text',
   require 'plugins.nvim-lint',
-  require 'plugins.copilot',
-  require 'plugins.avante',
-  require 'plugins.gpt-prompts',
   require 'plugins.obsidian',
   require 'plugins.vim-rest-console',
   require 'plugins.vim-tmux-navigator',
+  --
   require 'plugins.markdown-nvim',
   require 'plugins.markdown-render',
   require 'plugins.markdown-preview',
   require 'plugins.peek',
   require 'plugins.incline',
   require 'plugins.toggleterm',
+  require 'plugins.twilight',
   require 'plugins.zenmode',
-  require 'plugins.chatgpt',
   require 'plugins.diffview',
   change_detection = {
     enabled = true, -- automatically check for config file changes and reload the ui

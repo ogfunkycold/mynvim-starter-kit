@@ -17,18 +17,18 @@ local keymap = vim.keymap
 --  See `:help hlsearch`
 
 -- Clear highlights on search when pressing <CR> in normal modes
-keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
+map('n', '<Esc>', '<cmd>nohlsearch<CR>')
 keymap.set('n', '<leader>nh', ':nohl<CR>', { desc = 'Clear search highlights' })
 
 -- NOTE: This won't work in all terminal emulators/tmux/etc. Try your own mapping
 -- or just use <C-\><C-n> to exit terminal mode
-vim.keymap.set('t', '<Esc><Esc>', '<C-\\><C-n>', { desc = 'Exit terminal mode' })
+keymap.set('t', '<Esc><Esc>', '<C-\\><C-n>', { desc = 'Exit terminal mode' })
 
 -- TIP: Disable arrow keys in normal mode
--- vim.keymap.set('n', '<left>', '<cmd>echo "Use h to move!!"<CR>')
--- vim.keymap.set('n', '<right>', '<cmd>echo "Use l to move!!"<CR>')
--- vim.keymap.set('n', '<up>', '<cmd>echo "Use k to move!!"<CR>')
--- vim.keymap.set('n', '<down>', '<cmd>echo "Use j to move!!"<CR>')
+-- map('n', '<left>', '<cmd>echo "Use h to move!!"<CR>')
+-- map('n', '<right>', '<cmd>echo "Use l to move!!"<CR>')
+-- map('n', '<up>', '<cmd>echo "Use k to move!!"<CR>')
+-- map('n', '<down>', '<cmd>echo "Use j to move!!"<CR>')
 
 -- NOTE: Keybinds to make split navigation easier.
 --  Use CTRL+<hjkl> to switch between windows
@@ -83,22 +83,22 @@ map('n', 'TT', ':TransparentToggle<CR>')
 -- map('n', 'gx', ':!open <c-r><c-a><CR>') -- open URL under cursor
 
 -- NOTE: Vertical scroll and center
-vim.keymap.set('n', '<C-d>', '<C-d>zz', opts)
-vim.keymap.set('n', '<C-u>', '<C-u>zz', opts)
+map('n', '<C-d>', '<C-d>zz')
+map('n', '<C-u>', '<C-u>zz')
 
 -- NOTE: Find and center
-vim.keymap.set('n', 'n', 'nzzzv', opts)
-vim.keymap.set('n', 'N', 'Nzzzv', opts)
+map('n', 'n', 'nzzzv')
+map('n', 'N', 'Nzzzv')
 --
 -- NOTE: Toggle line wrapping
-vim.keymap.set('n', '<leader>lw', '<cmd>set wrap!<CR>', opts)
+map('n', '<leader>lw', '<cmd>set wrap!<CR>')
 
 -- NOTE: Stay in indent mode
-vim.keymap.set('v', '<', '<gv', opts)
-vim.keymap.set('v', '>', '>gv', opts)
+map('v', '<', '<gv')
+map('v', '>', '>gv')
 
 -- Keep last yanked when pasting
-vim.keymap.set('v', 'p', '"_dP', opts)
+map('v', 'p', '"_dP', opts)
 
 -- NOTE: Resize Windows
 map('n', '<C-Left>', '<C-w><')
@@ -128,9 +128,9 @@ map('n', '<leader>tn', ':tabn<CR>') -- next tab
 map('n', '<leader>tp', ':tabp<CR>') -- previous tab
 
 -- NOTE: Split window management
-keymap.set('n', 'sv', ':vsplit<Return>', opts)
+map('n', 'sv', ':vsplit<Return>')
 map('n', '<leader>sv', '<C-w>v') -- split window vertically
-keymap.set('n', 'ss', ':split<Return>', opts)
+map('n', 'ss', ':split<Return>')
 map('n', '<leader>sh', '<C-w>s') -- split window horizontally
 map('n', '<leader>se', '<C-w>=') -- make split windows equal width
 map('n', '<leader>sx', ':close<CR>') -- close split window
@@ -201,16 +201,16 @@ end)
 -- TODO: other set of keymaps, comming from kickstart. I prefer this set the previous onee.
 -- check in the future
 local builtin = require 'telescope.builtin'
-vim.keymap.set('n', '<leader>sh', builtin.help_tags, { desc = '[S]earch [H]elp' })
-vim.keymap.set('n', '<leader>sk', builtin.keymaps, { desc = '[S]earch [K]eymaps' })
-vim.keymap.set('n', '<leader>sf', builtin.find_files, { desc = '[S]earch [F]iles' })
-vim.keymap.set('n', '<leader>ss', builtin.builtin, { desc = '[S]earch [S]elect Telescope' })
-vim.keymap.set('n', '<leader>sw', builtin.grep_string, { desc = '[S]earch current [W]ord' })
-vim.keymap.set('n', '<leader>sg', builtin.live_grep, { desc = '[S]earch by [G]rep' })
-vim.keymap.set('n', '<leader>sd', builtin.diagnostics, { desc = '[S]earch [D]iagnostics' })
-vim.keymap.set('n', '<leader>sr', builtin.resume, { desc = '[S]earch [R]esume' })
-vim.keymap.set('n', '<leader>s.', builtin.oldfiles, { desc = '[S]earch Recent Files ("." for repeat)' })
-vim.keymap.set('n', '<leader><leader>', builtin.buffers, { desc = '[ ] Find existing buffers' })
+keymap.set('n', '<leader>sh', builtin.help_tags, { desc = '[S]earch [H]elp' })
+keymap.set('n', '<leader>sk', builtin.keymaps, { desc = '[S]earch [K]eymaps' })
+keymap.set('n', '<leader>sf', builtin.find_files, { desc = '[S]earch [F]iles' })
+keymap.set('n', '<leader>ss', builtin.builtin, { desc = '[S]earch [S]elect Telescope' })
+keymap.set('n', '<leader>sw', builtin.grep_string, { desc = '[S]earch current [W]ord' })
+keymap.set('n', '<leader>sg', builtin.live_grep, { desc = '[S]earch by [G]rep' })
+keymap.set('n', '<leader>sd', builtin.diagnostics, { desc = '[S]earch [D]iagnostics' })
+keymap.set('n', '<leader>sr', builtin.resume, { desc = '[S]earch [R]esume' })
+keymap.set('n', '<leader>s.', builtin.oldfiles, { desc = '[S]earch Recent Files ("." for repeat)' })
+keymap.set('n', '<leader><leader>', builtin.buffers, { desc = '[ ] Find existing buffers' })
 
 -- NOTE: Git-blame
 map('n', '<leader>gb', ':GitBlameToggle<CR>') -- toggle git blame
@@ -324,34 +324,36 @@ end)
 -- >>> ou # sync local with Notion
 --
 -- navigate to vault
-vim.keymap.set('n', '<leader>oo', ':cd /home/og/ogwork/obsidian-on-popos/zettelkasten<cr>')
+map('n', '<leader>oo', ':cd /home/og/ogwork/obsidian-on-popos/zettelkasten<cr>')
 --
 -- convert note to template and remove leading white space
-vim.keymap.set('n', '<leader>on', ':ObsidianTemplate note<cr> :lua vim.cmd([[1,/^\\S/s/^\\n\\{1,}//]])<cr>')
+map('n', '<leader>on', ':ObsidianTemplate note<cr> :lua vim.cmd([[1,/^\\S/s/^\\n\\{1,}//]])<cr>')
 -- strip date from note title and replace dashes with spaces
 -- must have cursor on title
-vim.keymap.set('n', '<leader>of', ':s/\\(# \\)[^_]*_/\\1/ | s/-/ /g<cr>')
+map('n', '<leader>of', ':s/\\(# \\)[^_]*_/\\1/ | s/-/ /g<cr>')
 --
 -- search for files in full vault
-vim.keymap.set('n', '<leader>os', ':Telescope find_files search_dirs={"/home/og/ogwork/obsidian-on-popos/zettelkasten/notes"}<cr>')
-vim.keymap.set('n', '<leader>oz', ':Telescope live_grep search_dirs={"/home/og/ogwork/obsidian-on-popos/zettelkasten/notes"}<cr>')
+map('n', '<leader>os', ':Telescope find_files search_dirs={"/home/og/ogwork/obsidian-on-popos/zettelkasten/notes"}<cr>')
+map('n', '<leader>oz', ':Telescope live_grep search_dirs={"/home/og/ogwork/obsidian-on-popos/zettelkasten/notes"}<cr>')
 --
 -- search for files in notes (ignore zettelkasten)
--- vim.keymap.set("n", "<leader>ois", ":Telescope find_files search_dirs={\"/Users/alex/library/Mobile\\ Documents/iCloud~md~obsidian/Documents/ZazenCodes/notes\"}<cr>")
--- vim.keymap.set("n", "<leader>oiz", ":Telescope live_grep search_dirs={\"/Users/alex/library/Mobile\\ Documents/iCloud~md~obsidian/Documents/ZazenCodes/notes\"}<cr>")
+-- map("n", "<leader>ois", ":Telescope find_files search_dirs={\"/Users/alex/library/Mobile\\ Documents/iCloud~md~obsidian/Documents/ZazenCodes/notes\"}<cr>")
+-- map("n", "<leader>oiz", ":Telescope live_grep search_dirs={\"/Users/alex/library/Mobile\\ Documents/iCloud~md~obsidian/Documents/ZazenCodes/notes\"}<cr>")
 --
 -- for review workflow
 -- move file in current buffer to zettelkasten folder
-vim.keymap.set('n', '<leader>ok', ":!mv '%:p' /home/og/ogwork/obisidian-on-popos/zettelkasten<cr>:bd<cr>")
+map('n', '<leader>ok', ":!mv '%:p' /home/og/ogwork/obisidian-on-popos/zettelkasten<cr>:bd<cr>")
 --
 -- delete file in current buffer
-vim.keymap.set('n', '<leader>odd', ":!rm '%:p'<cr>:bd<cr>")
+map('n', '<leader>odd', ":!rm '%:p'<cr>:bd<cr>")
+
 -- NOTE: change background color
-vim.keymap.set('n', '<leader>bg', function()
+keymap.set('n', '<leader>bg', function()
   local cat = require 'catppuccin'
   cat.options.transparent_background = not cat.options.transparent_background
   cat.compile()
-  vim.cmd.colorscheme(vim.g.colors_name) 
+  -- vim.cmd.colorscheme(vim.g.colors_name)
+  vim.cmd.colorscheme 'catppuccin'
 end)
 --
 -- NOTE: add keybindings for ChatGPT using which-key
@@ -365,7 +367,7 @@ wk.add {
     { '<leader>c', group = 'GhatGTP' },
     { '<leader>cc', '<cmd>ChatGPT<CR>', desc = 'ChatGPT' },
     { '<leader>ca', '<cmd>ChatGPTRun add_tests<CR>', desc = 'Add Tests' },
-    { '<leader>cd', '<cmd>ChatGPTRun docstring<CR>', desc = 'Docstring' }
+    { '<leader>cd', '<cmd>ChatGPTRun docstring<CR>', desc = 'Docstring' },
     { '<leader>ce', '<cmd>ChatGPTEditWithInstruction<CR>', desc = 'Edit with instruction' },
     { '<leader>cf', '<cmd>ChatGPTRun fix_bugs<CR>', desc = 'Fix Bugs' },
     { '<leader>cg', '<cmd>ChatGPTRun grammar_correction<CR>', desc = 'Grammar Correction' },
@@ -378,5 +380,35 @@ wk.add {
     { '<leader>cx', '<cmd>ChatGPTRun explain_code<CR>', desc = 'Explain Code' },
   },
 }
+
+-- NOTE: add keybindings for Copilot
+keymap.set('i', '<C-J>', 'copilot#Accept("\\<CR>")', {
+  expr = true,
+  replace_keycodes = false,
+})
+keymap.set('i', '<C-K>', 'copilot#Next()', {
+  expr = true,
+  replace_keycodes = false,
+})
+keymap.set('i', '<C-L>', 'copilot#Previous()', {
+  expr = true,
+  replace_keycodes = false,
+})
+
+vim.g.copilot_no_tab_map = true
+-- NOTE: add keybindings for Copilot sintax highlight
+
+vim.api.nvim_create_autocmd('ColorScheme', {
+  pattern = 'catppuccin',
+  -- group = ...,
+  callback = function()
+    vim.api.nvim_set_hl(0, 'CopilotSuggestion', {
+      fg = '#555555',
+      ctermfg = 8,
+      force = true,
+    })
+  end,
+})
+--
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et

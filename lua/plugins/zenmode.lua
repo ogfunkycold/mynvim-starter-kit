@@ -1,5 +1,13 @@
 -- NOTE: Distraction-free coding for Neovim
 --
+-- NOTE: Calculate min width of the window should be 70% of the editor width or 90 columns
+-- whichever is smaller
+local function zen_mode_width()
+  local width = vim.api.nvim_win_get_width(0)
+  local min_width = math.max(width * 0.75, 90)
+  return math.min(width, min_width)
+end
+
 return {
   'folke/zen-mode.nvim',
   cmd = 'ZenMode',
@@ -12,7 +20,10 @@ return {
     -- * an absolute number of cells when > 1
     -- * a percentage of the width / height of the editor when <= 1
     -- * a function that returns the width or the height
-    width = 140, -- width of the Zen window
+    -- width = 140, -- width of the Zen window
+    window = {
+      width = zen_mode_width(),
+    },
     height = 1, -- height of the Zen window
     -- by default, no options are changed for the Zen window
     -- uncomment any of the options below, or add other vim.wo options you want to apply
@@ -39,6 +50,7 @@ return {
       laststatus = 0, -- turn off the statusline in zen mode
     },
     twilight = { enabled = true }, -- enable to start Twilight when zen mode opens
+    -- NOTE: Those options are disables by default, change to enabled = true to enable
     gitsigns = { enabled = false }, -- disables git signs
     tmux = { enabled = true }, -- disables the tmux statusline
     todo = { enabled = false }, -- if set to "true", todo-comments.nvim highlights will be disabled

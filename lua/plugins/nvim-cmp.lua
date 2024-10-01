@@ -35,6 +35,7 @@ return {
       Method = 'm',
       Function = '󰊕',
       Constructor = '',
+      -- Constructor = "",
       Field = '',
       Variable = '󰆧',
       Class = '󰌗',
@@ -44,8 +45,9 @@ return {
       Unit = '',
       Value = '󰎠',
       Enum = '',
-      Keyword = '󰌋',
-      Snippet = '',
+      Keyword = '',
+      Snippet = '',
+      -- Snippet = '',
       Color = '󰏘',
       File = '󰈙',
       Reference = '',
@@ -56,6 +58,7 @@ return {
       Event = '',
       Operator = '󰆕',
       TypeParameter = '󰊄',
+      Copilot = '', -- Add an icon for Copilot
     }
     cmp.setup {
       snippet = {
@@ -101,23 +104,39 @@ return {
       sources = cmp.config.sources {
         { name = 'nvim_lsp' }, -- lsp
         { name = 'luasnip' }, -- snippets
+        { name = 'copilot' }, -- copilot
         { name = 'buffer' }, -- text within current buffer
         { name = 'path' }, -- file system paths
       },
+      -- NOTE: formatting modified from the default to add an entry for copilot
+      --
+      -- Explanation:
+      -- 1. **kind_icons Table**: This table maps completion kinds to their respective icons. We added
+      -- an entry for `Copilot` with an appropriate icon (`` in this case, but you can choose any icon
+      -- you prefer).
+      -- 2. **format Function**: The `format` function is responsible for formatting the completion items.
+      -- We added an entry for `copilot` in the `menu` table to display `[Copilot]` next to suggestions
+      -- from Copilot.
+      -- Make sure that the `kind_icons` table is defined in the scope where the `format` function can access it. If `kind_icons` is already defined elsewhere in your configuration, you can simply add the `Copilot` entry to it.
+      -- This should give you a visual indication that a suggestion is from Copilot in your completion menu.
       formatting = {
         expandable_indicator = true,
         fields = { 'kind', 'abbr', 'menu' },
         format = function(entry, vim_item)
-          vim_item.kind = string.format('%s', kind_icons[vim_item.kind])
+          -- Set the kind icon
+          vim_item.kind = string.format('%s', kind_icons[vim_item.kind] or '')
+          -- Set the menu label
           vim_item.menu = ({
             nvim_lsp = '[LSP]',
             luasnip = '[Snippet]',
             buffer = '[Buffer]',
             path = '[Path]',
+            copilot = '[Copilot]', -- Add an entry for Copilot
           })[entry.source.name]
           return vim_item
         end,
       },
+      -- Add borders to completions popups
       window = {
         -- Add borders to completions popups
         completion = cmp.config.window.bordered(),
